@@ -1,3 +1,41 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <h2>Interest Calculation</h2>
+  <form #calcForm="ngForm">
+    <div class="form-group">
+      <label for="email">Interest Type:</label>
+      <select class="form-control" name="type" ngModel="1">
+            <option value="1">Simple Interest</option>
+            <option value="2">Compound Interest</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount:</label>
+      <input type="text" class="form-control" name="amount" placeholder="Enter Amount" ngModel>
+    </div>
+    <div class="form-group">
+      <label for="rate">Rate of interest:</label>
+      <input type="text" class="form-control" name="rate" placeholder="Enter Rate of interest" ngModel>
+    </div>
+    <div class="form-group">
+      <label for="years">No of years:</label>
+      <input type="text" class="form-control" name="years" placeholder="No of years" ngModel>
+    </div>
+    <div class="form-group" *ngIf="calcForm.value.type==2">
+      <label for="email">Compound interval:</label>
+      <select class="form-control" name="interval" ngModel="1">
+            <option value="1">Yearly</option>
+            <option value="2">Half Yearly</option>
+      </select>
+    </div>
+    <button type="submit" (click)="calculate(calcForm.value)" class="btn btn-default">Calculate</button>
+    <br/>
+    <div class="form-group alert alert-success" *ngIf="result>0">
+      <label for="years">The interest is :</label>
+      {{result | number:'1.2-2'}}
+    </div>
+    <div class="form-group alert alert-success" *ngIf="amount>0">
+      <label for="years">The amount is :</label>
+      {{amount | number:'1.2-2'}}
+    </div>
+  </form>
+</div>
